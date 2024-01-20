@@ -19,14 +19,12 @@ namespace Timer
 {
     public partial class MainWindow : Window, IComponentConnector
     {
-        private const int WH_KEYBOARD_LL = 13;
-        private const int WM_KEYDOWN = 256;
+
         private static MainWindow.LowLevelKeyboardProc kProc = new(MainWindow.KeyboardHookCallback);
         private static MainWindow.LowLevelMouseProc mProc = new(MainWindow.MouseHookCallback);
         private static MainWindow self;
         private static IntPtr _mouseHookID = IntPtr.Zero;
         private static IntPtr _keyboardHookID = IntPtr.Zero;
-        private const int WH_MOUSE_LL = 14;
         private SolidColorBrush BREAK_COLOR = (SolidColorBrush)new BrushConverter().ConvertFrom((object)"#58cf39");
         private SolidColorBrush FOCUS_COLOR = (SolidColorBrush)new BrushConverter().ConvertFrom((object)"#fff");
         private SolidColorBrush ERROR_COLOR = (SolidColorBrush)new BrushConverter().ConvertFrom((object)"#bf0000");
@@ -105,7 +103,7 @@ namespace Timer
             this.LocationChanged += new EventHandler(this.locationChanged);
             this.counterLabel.Foreground = (Brush)this.FOCUS_COLOR;
             counterLabel.MouseDown += new MouseButtonEventHandler(this.drag);
-            counterLabel.MouseUp += new MouseButtonEventHandler(this.dragEnd);
+            this.MouseUp += new MouseButtonEventHandler(this.dragEnd);
             counterLabel.MouseDoubleClick += new MouseButtonEventHandler(this.reset);
             this.KeyDown += new KeyEventHandler(this.enter);
             this.timer = new DispatcherTimer();
