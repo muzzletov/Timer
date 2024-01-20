@@ -160,6 +160,7 @@ namespace Timer
 
             if (millis-this.enterMillis > 1000)
             {
+                if (key == 0) return;
                 Settings.Default.Minutes = key;
             } else
             {
